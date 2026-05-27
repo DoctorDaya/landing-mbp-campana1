@@ -36,14 +36,11 @@ const whatsappNumber = "573009209034";
 					</div>
 					<div class="hero-right">
 						<div class="hero-video">
-							<div class="vimeo-wrapper">
-								<iframe
-									src="https://player.vimeo.com/video/1137039494?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
-									frameborder="0"
-									allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-									allowfullscreen
-									title="Método Bebé Políglota">
-								</iframe>
+							<div class="video-real">
+								<video controls preload="metadata" playsinline poster="">
+									<source src="https://pub-38048ec6c9004902b7e0577bcb02d39a.r2.dev/video-hero.mp4" type="video/mp4" />
+									Tu navegador no soporta el video.
+								</video>
 							</div>
 						</div>
 					</div>
@@ -470,24 +467,20 @@ const whatsappNumber = "573009209034";
 			.hero-ninos-decoration img { width: 100%; max-width: 340px; }
 			.hero-video { width: 100%; max-width: 580px; }
 
-			/* VIMEO WRAPPER — Responsive 16:9 */
-			.vimeo-wrapper {
-				position: relative;
+			/* VIDEO HERO — Reproductor nativo HTML5 desde Cloudflare R2 */
+			.video-real {
 				width: 100%;
-				padding-bottom: 56.25%; /* 16:9 aspect ratio */
-				height: 0;
+				aspect-ratio: 16/9;
 				border-radius: var(--radius-lg);
 				overflow: hidden;
 				box-shadow: 0 20px 50px rgba(0,0,0,0.18);
 				background: #000;
 			}
-			.vimeo-wrapper iframe {
-				position: absolute;
-				top: 0;
-				left: 0;
+			.video-real video {
 				width: 100%;
 				height: 100%;
-				border: 0;
+				object-fit: cover;
+				display: block;
 			}
 
 			.kit-carousel-section { padding: 60px 0 80px; overflow: hidden; }
