@@ -36,10 +36,15 @@ const whatsappNumber = "573009209034";
 					</div>
 					<div class="hero-right">
 						<div class="hero-video">
-							<video class="video-real" controls preload="metadata" playsinline>
-								<source src="/video-hero.mp4" type="video/mp4" />
-								Tu navegador no soporta el video.
-							</video>
+							<div class="vimeo-wrapper">
+								<iframe
+									src="https://player.vimeo.com/video/1137039494?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+									frameborder="0"
+									allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+									allowfullscreen
+									title="Método Bebé Políglota">
+								</iframe>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -207,20 +212,17 @@ const whatsappNumber = "573009209034";
 			<div class="container">
 				<div class="section-header"><h2>Familias colombianas que ya están <span class="text-purple">viendo los resultados</span></h2></div>
 
-				<!-- 3 testimonios de TEXTO -->
 				<div class="testimonials-grid">
 					<div class="testimonial-card"><div class="stars">★★★★★</div><p>"Valentina tiene 4 años y ya pronuncia palabras en inglés, francés y portugués. <strong>Yo no hablo ninguno de los tres.</strong>"</p><div class="testimonial-author"><div class="avatar avatar-pink">C</div><div><strong>Carolina M.</strong><span>Medellín</span></div></div></div>
 					<div class="testimonial-card"><div class="stars">★★★★★</div><p>"Empezamos con Tomás cuando tenía 8 meses. <strong>Su desarrollo está muy por encima del promedio.</strong>"</p><div class="testimonial-author"><div class="avatar avatar-purple">J</div><div><strong>Juan Sebastián R.</strong><span>Bogotá</span></div></div></div>
 					<div class="testimonial-card"><div class="stars">★★★★★</div><p>"Los 10 minutos son reales — los hacemos en el desayuno. <strong>Matías ya señala colores en mandarín.</strong>"</p><div class="testimonial-author"><div class="avatar avatar-cyan">D</div><div><strong>Daniela G.</strong><span>Cali</span></div></div></div>
 				</div>
 
-				<!-- Separador con título para los videos -->
 				<div class="video-testimonials-header">
 					<div class="eyebrow eyebrow-center">🎥 Mira sus historias en video</div>
 					<h3 class="video-testimonials-title">Escúchalas <span class="text-pink">contar su experiencia</span></h3>
 				</div>
 
-				<!-- 6 VIDEOS REALES -->
 				<div class="video-testimonials-real">
 					<div class="testimonial-video-card">
 						<video controls preload="metadata" playsinline>
@@ -262,7 +264,6 @@ const whatsappNumber = "573009209034";
 			</div>
 		</section>
 
-		<!-- ============ DR ORTIZ ============ -->
 		<section class="section section-science">
 			<div class="container">
 				<div class="science-section-header">
@@ -335,7 +336,6 @@ const whatsappNumber = "573009209034";
 				</div>
 			</div>
 		</section>
-		<!-- ============ FIN DR ORTIZ ============ -->
 
 		<section class="section section-faq">
 			<div class="container container-narrow">
@@ -469,7 +469,26 @@ const whatsappNumber = "573009209034";
 			.hero-trust { color: var(--text-medium); font-size: 0.9rem; margin-bottom: 24px; margin-top: 16px; }
 			.hero-ninos-decoration img { width: 100%; max-width: 340px; }
 			.hero-video { width: 100%; max-width: 580px; }
-			.video-real { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0,0,0,0.18); background: #000; display: block; object-fit: cover; }
+
+			/* VIMEO WRAPPER — Responsive 16:9 */
+			.vimeo-wrapper {
+				position: relative;
+				width: 100%;
+				padding-bottom: 56.25%; /* 16:9 aspect ratio */
+				height: 0;
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+				background: #000;
+			}
+			.vimeo-wrapper iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border: 0;
+			}
 
 			.kit-carousel-section { padding: 60px 0 80px; overflow: hidden; }
 			.carousel-header { text-align: center; margin-bottom: 40px; }
@@ -622,7 +641,6 @@ const whatsappNumber = "573009209034";
 			.foryou-no .foryou-checks li:hover { background: var(--white); }
 			.check-no { background: var(--gray-100); color: var(--text-light); border: 2px solid var(--gray-200); }
 
-			/* TESTIMONIOS TEXTO */
 			.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 72px; }
 			.testimonial-card { background: var(--white); padding: 32px 28px; border-radius: var(--radius-lg); border: 2px solid var(--gray-100); }
 			.stars { color: var(--yellow); font-size: 1.15rem; margin-bottom: 16px; letter-spacing: 2px; }
@@ -635,50 +653,14 @@ const whatsappNumber = "573009209034";
 			.testimonial-author strong { display: block; }
 			.testimonial-author span { font-size: 0.85rem; color: var(--text-light); }
 
-			/* HEADER DE VIDEOS TESTIMONIOS */
-			.video-testimonials-header {
-				text-align: center;
-				max-width: 700px;
-				margin: 0 auto 40px;
-			}
-			.video-testimonials-header .eyebrow {
-				background: rgba(124,58,237,0.1);
-				color: var(--purple);
-			}
-			.video-testimonials-title {
-				font-family: var(--font-display);
-				font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-				font-weight: 800;
-				color: var(--text-dark);
-				margin-top: 8px;
-			}
+			.video-testimonials-header { text-align: center; max-width: 700px; margin: 0 auto 40px; }
+			.video-testimonials-header .eyebrow { background: rgba(124,58,237,0.1); color: var(--purple); }
+			.video-testimonials-title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 800; color: var(--text-dark); margin-top: 8px; }
 
-			/* 6 VIDEOS REALES — Grid 3x2 */
-			.video-testimonials-real {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 24px;
-			}
-			.testimonial-video-card {
-				background: var(--white);
-				border-radius: var(--radius-lg);
-				overflow: hidden;
-				box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				border: 2px solid var(--gray-100);
-			}
-			.testimonial-video-card:hover {
-				transform: translateY(-6px);
-				box-shadow: 0 16px 40px rgba(124,58,237,0.18);
-				border-color: var(--purple-light);
-			}
-			.testimonial-video-card video {
-				width: 100%;
-				aspect-ratio: 9/16;
-				object-fit: cover;
-				background: #000;
-				display: block;
-			}
+			.video-testimonials-real { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+			.testimonial-video-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid var(--gray-100); }
+			.testimonial-video-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(124,58,237,0.18); border-color: var(--purple-light); }
+			.testimonial-video-card video { width: 100%; aspect-ratio: 9/16; object-fit: cover; background: #000; display: block; }
 
 			.science-section-header { text-align: center; max-width: 800px; margin: 0 auto 56px; }
 			.science-section-header .eyebrow { background: rgba(124,58,237,0.1); color: var(--purple); }
