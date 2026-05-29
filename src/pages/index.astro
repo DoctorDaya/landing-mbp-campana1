@@ -1,5 +1,8 @@
 ---
 const whatsappNumber = "573009209034";
+const whatsappMsg = encodeURIComponent("Hola, quiero más información sobre el Método Bebé Políglota para mi hijo.");
+// WEBHOOK: cuando tengas la URL del panel de Sergio, pégala aquí entre las comillas.
+const webhookURL = "";
 ---
 
 <html lang="es">
@@ -8,15 +11,36 @@ const whatsappNumber = "573009209034";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="¿Sabías que los primeros años de vida son la etapa más importante para el desarrollo del cerebro y el lenguaje? Descubre el Kit Bebé Políglota: 7 idiomas para tu hijo desde 0 a 6 años." />
-		<title>Bebé Políglota — 7 idiomas para tu hijo desde la gestación</title>
+		<meta name="description" content="Tu hijo puede aprender idiomas con una facilidad que tú nunca tuviste. Método Bebé Políglota: respaldado por la ciencia, para niños de 0 a 6 años. Déjanos tus datos y un asesor te explica, sin costo." />
+		<title>Bebé Políglota — Prepara el cerebro de tu hijo para los idiomas</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+
+		<!-- ===== META PIXEL: cuando tengas tu ID, reemplaza TU_PIXEL_ID y descomenta este bloque =====
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', 'TU_PIXEL_ID');
+			fbq('track', 'PageView');
+		</script>
+		======================================================================================= -->
 	</head>
 	<body>
-		<!-- HERO -->
-		<section class="hero">
+
+		<!-- ===== TOPBAR ===== -->
+		<div class="topbar">
+			<span>👶 Para mamás y papás con hijos de 0 a 6 años</span>
+		</div>
+
+		<!-- ===== 1. HERO + FORMULARIO ===== -->
+		<section class="hero" id="inicio">
 			<div class="cloud cloud-1"></div>
 			<div class="cloud cloud-2"></div>
 			<div class="cloud cloud-3"></div>
@@ -28,314 +52,215 @@ const whatsappNumber = "573009209034";
 						<div class="hero-logo">
 							<img src="/logo.png" alt="Bebé Políglota" />
 						</div>
+						<p class="hero-antetitulo">Para mamás y papás con hijos de 0 a 6 años</p>
 						<h1 class="hero-title">
-							¿Sabías qué <strong>los primeros años de vida son la etapa más importante para el desarrollo del cerebro y el lenguaje</strong>?
+							Tu hijo puede aprender idiomas con una <strong>facilidad que tú nunca tuviste.</strong>
 						</h1>
 						<p class="hero-subtitle">
-							Conoce, <strong class="text-purple">Bebé Políglota</strong><br/>
-							El método que multiplica idiomas
+							Entre los 0 y los 6 años el cerebro de tu hijo vive una ventana única que no se repite. Te mostramos cómo aprovecharla con un método respaldado por la ciencia. Déjanos tus datos y un asesor te explica cómo, sin costo.
 						</p>
-						<div class="hero-badge">De <span class="badge-num">0</span> a <span class="badge-num">6</span> años</div>
 					</div>
-					<div class="hero-nino-col">
-						<img class="hero-nino" src="/nino-kit.png" alt="Niño sorprendido viendo el kit" />
+
+					<!-- FORMULARIO HERO -->
+					<div class="hero-form-wrap">
+						<form class="lead-form" id="form-hero" onsubmit="return enviarLead(event, 'form-hero')">
+							<h2 class="form-title">Recibe la información gratis</h2>
+							<div class="form-field">
+								<label for="nombre-hero">Tu nombre</label>
+								<input type="text" id="nombre-hero" name="nombre" placeholder="Escribe tu nombre" required />
+							</div>
+							<div class="form-field">
+								<label for="whatsapp-hero">Tu WhatsApp</label>
+								<input type="tel" id="whatsapp-hero" name="whatsapp" placeholder="Ej: 300 123 4567" required />
+							</div>
+							<div class="form-field">
+								<label for="email-hero">Tu correo</label>
+								<input type="email" id="email-hero" name="email" placeholder="tucorreo@ejemplo.com" required />
+							</div>
+							<div class="form-field">
+								<label for="edad-hero">Edad de tu bebé</label>
+								<select id="edad-hero" name="edad" required>
+									<option value="" disabled selected>Selecciona una opción</option>
+									<option value="En gestación">En gestación</option>
+									<option value="0-1 años">0 a 1 años</option>
+									<option value="2-3 años">2 a 3 años</option>
+									<option value="4-5 años">4 a 5 años</option>
+									<option value="6 años">6 años</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-orange btn-block">QUIERO QUE UN ASESOR ME EXPLIQUE →</button>
+							<p class="form-micro">Es gratis y sin compromiso. Te contactamos hoy mismo.</p>
+						</form>
 					</div>
-					<div class="hero-image">
-						<div class="hero-image-circle">
-							<img src="/kit-completo.png" alt="Kit completo Bebé Políglota" />
+				</div>
+			</div>
+		</section>
+
+		<!-- ===== 2. CONEXIÓN (3 frases) ===== -->
+		<section class="section-conexion">
+			<div class="container container-narrow">
+				<p class="conexion-frase conexion-pregunta">¿A ti te costó aprender inglés? ¿Sentiste que empezaste demasiado tarde?</p>
+				<p class="conexion-frase">No quieres que a tu hijo le pase lo mismo. Quieres que para él los idiomas sean fáciles y naturales, una puerta abierta y no un muro.</p>
+				<p class="conexion-frase">La buena noticia: hoy puedes prepararlo. Y el mejor momento es ahora, mientras su cerebro está en su etapa más receptiva.</p>
+			</div>
+		</section>
+
+		<!-- ===== 3. LA VENTANA DE OPORTUNIDAD ===== -->
+		<section class="section-ventana">
+			<div class="cloud cloud-5"></div>
+			<div class="cloud cloud-6"></div>
+			<div class="container">
+				<div class="ventana-grid">
+					<div class="ventana-imagenes">
+						<div class="ventana-img-card">
+							<img src="/beneficio-3.png" alt="Bilingüe temprano" />
+							<span>Bilingüe Temprano</span>
 						</div>
-						<div class="hero-claves">
-							<div class="hero-clave">
-								<div class="hero-clave-circle"><img src="/kit/album-booz.png" alt="Álbum Mágico de Booz" /></div>
-							</div>
-							<div class="hero-clave">
-								<div class="hero-clave-circle"><img src="/kit/cuerpo-humano.png" alt="Cuerpo humano" /></div>
-							</div>
-							<div class="hero-clave">
-								<div class="hero-clave-circle"><img src="/kit/kit-vista-completa.png" alt="Kit Bebé Políglota" /></div>
-							</div>
+						<div class="ventana-img-card">
+							<img src="/beneficio-1.png" alt="Bilingüe tardío" />
+							<span>Bilingüe Tardío</span>
+						</div>
+						<div class="ventana-img-card">
+							<img src="/beneficio-6.png" alt="Monolingüe" />
+							<span>Monolingüe</span>
+						</div>
+					</div>
+					<div class="ventana-texto">
+						<h2 class="seccion-titulo">Los niños menores de 6 años aprenden idiomas hasta <span class="text-purple">7 veces más rápido</span> que un adulto.</h2>
+						<p class="seccion-cuerpo">El 90% del cerebro se forma antes de los 6 años. En esa etapa, el oído de tu hijo distingue los sonidos de cualquier idioma con una facilidad asombrosa. Es una ventana poderosa pero breve: no se vuelve a abrir. Empezar hoy es lo más impactante que puedes hacer por su futuro.</p>
+						<p class="frase-destacada">No buscamos que hable siete idiomas mañana. Preparamos su cerebro para que, cuando llegue el momento, aprender idiomas le resulte fácil para toda la vida.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===== 4. QUÉ ES EL MÉTODO ===== -->
+		<section class="section-metodo">
+			<div class="container">
+				<div class="metodo-grid">
+					<div class="metodo-texto">
+						<h2 class="seccion-titulo">No es un curso de idiomas. Es lo que va <span class="text-purple">ANTES</span> del curso.</h2>
+						<p class="seccion-cuerpo">El Método Bebé Políglota es un preparador lingüístico: un entrenamiento para las neuronas de tu hijo, con videos animados y herramientas multisensoriales, que le facilita aprender idiomas el resto de su vida. Solo necesitas dos momentos al día, en casa, sin que tú tengas que saber otros idiomas.</p>
+						<ul class="metodo-puntos">
+							<li><span class="punto-icon">⏰</span> 10 a 15 minutos al día, en casa, a tu ritmo.</li>
+							<li><span class="punto-icon">🤰</span> Desde la gestación hasta los 7 años.</li>
+							<li><span class="punto-icon">💛</span> Tú solo acompañas. El método hace el resto.</li>
+						</ul>
+					</div>
+					<div class="metodo-imagen">
+						<div class="metodo-img-circle">
+							<img src="/kit/album-booz.png" alt="Material del Método Bebé Políglota" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- VIDEO TESTIMONIAL -->
+		<!-- ===== 5. TESTIMONIOS (videos) ===== -->
 		<section class="section-video">
 			<div class="container">
 				<div class="video-layout">
-					<h2 class="video-titulo">Resultados que hablan por sí solos</h2>
+					<h2 class="video-titulo">Familias que ya le dieron esta ventaja a sus hijos.</h2>
 					<div class="video-trio">
 						<div class="video-vertical">
-							<video controls preload="metadata" playsinline>
+							<video controls preload="metadata" playsinline muted>
 								<source src="https://assets.cdn.filesafe.space/LnGkjnxS9ryXNCNUzgwt/media/69efc785d65f43b68cf5dc83.mp4" type="video/mp4" />
 								Tu navegador no soporta el video.
 							</video>
 						</div>
 						<div class="video-vertical">
-							<video controls preload="metadata" playsinline>
+							<video controls preload="metadata" playsinline muted>
 								<source src="https://assets.cdn.filesafe.space/LnGkjnxS9ryXNCNUzgwt/media/69efc82c05d41990011a4a47.mp4" type="video/mp4" />
 								Tu navegador no soporta el video.
 							</video>
 						</div>
 						<div class="video-vertical">
-							<video controls preload="metadata" playsinline>
+							<video controls preload="metadata" playsinline muted>
 								<source src="https://assets.cdn.filesafe.space/LnGkjnxS9ryXNCNUzgwt/media/69efc845d65f43b68cf61279.mp4" type="video/mp4" />
 								Tu navegador no soporta el video.
 							</video>
 						</div>
 					</div>
-					<div class="video-text">
-						<p class="video-lead">
-							<strong>Bebé Políglota es un método interactivo multilingüe</strong> diseñado científicamente para estimular a tu bebé en <strong>7 idiomas</strong> de forma segura y efectiva, sin pantallas ni ondas dañinas.
-						</p>
-						<p class="video-highlight">
-							¡Dale a tu hijo el regalo que se merece!
-						</p>
-						<a href="#formulario" class="btn btn-orange btn-xl">¡Quiero saber más!</a>
-					</div>
+					<a href="#formulario" class="btn btn-orange btn-xl">QUIERO PREPARAR A MI HIJO →</a>
 				</div>
 			</div>
 		</section>
 
-		<!-- RESPALDO CIENTÍFICO -->
-		<section class="section-respaldo">
+		<!-- ===== 6. CIERRE + FORMULARIO (repetido) ===== -->
+		<section class="section-cierre" id="formulario">
 			<div class="container">
-				<div class="respaldo-grid">
-					<div class="respaldo-image">
-						<div class="respaldo-image-bg"></div>
-						<img src="/dr-ortiz.jpg" alt="Dr. Tomás Ortiz Alonso" />
+				<div class="cierre-grid">
+					<div class="cierre-texto">
+						<h2 class="cierre-titulo">El mejor momento para empezar fue ayer. El segundo mejor es hoy.</h2>
+						<p class="cierre-subtitulo">Déjanos tus datos y un asesor te explica, sin costo y sin compromiso, cómo darle a tu hijo esta ventaja para toda la vida.</p>
+						<p class="cierre-micro">Solo para niños de 0 a 6 años. Te contactamos hoy mismo.</p>
 					</div>
-					<div class="respaldo-content">
-						<div class="respaldo-badge-icon">🏅</div>
-						<ul class="respaldo-list">
-							<li>
-								<span class="respaldo-check">✓</span>
-								<span>Respaldado por el <strong>Dr. Tomás Ortiz Alonso</strong>, Catedrático de la <strong>Universidad Complutense de Madrid (España)</strong>.</span>
-							</li>
-							<li>
-								<span class="respaldo-check">✓</span>
-								<span>Estudio aplicado en el <strong>Colegio San Patricio de Madrid</strong> que demostró aumento medible del coeficiente intelectual en niños 0–6 años.</span>
-							</li>
-							<li>
-								<span class="respaldo-check">✓</span>
-								<span>Inspirado en los <strong>métodos Glenn Doman</strong> y la neurociencia cognitiva infantil, que respetan el desarrollo natural del niño.</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- BENEFICIOS -->
-		<section class="section-beneficios">
-			<div class="container">
-				<div class="beneficios-header">
-					<div class="beneficios-tag">¿Qué beneficios tiene?</div>
-				</div>
-				<div class="beneficios-grid">
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-1">
-							<img class="beneficio-img" src="/beneficio-1.png" alt="Vínculo con papá y mamá" />
-							<span class="beneficio-sticker beneficio-sticker-yellow">love</span>
-						</div>
-						<p>Fomenta la <strong>interacción y el vínculo</strong> con papá y mamá</p>
-					</div>
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-2">
-							<img class="beneficio-img" src="/beneficio-2.png" alt="Huellas de amor" />
-						</div>
-						<p>Genera <strong>huellas de amor</strong> que tu hijo llevará en el corazón por siempre</p>
-					</div>
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-3">
-							<img class="beneficio-img" src="/beneficio-3.png" alt="Concentración, memoria y creatividad" />
-						</div>
-						<p>Fortalece la <strong>concentración, memoria y creatividad</strong></p>
-					</div>
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-4">
-							<img class="beneficio-img" src="/beneficio-4.png" alt="Buenos hábitos de aseo" />
-						</div>
-						<p>Fomenta <strong>buenos hábitos</strong> de aseo y vida saludable</p>
-					</div>
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-5">
-							<img class="beneficio-img" src="/beneficio-5.png" alt="Asociación de imágenes y palabras" />
-						</div>
-						<p>Ayuda a la <strong>asociación de imágenes y palabras</strong></p>
-					</div>
-					<div class="beneficio-item">
-						<div class="beneficio-circle beneficio-circle-6">
-							<img class="beneficio-img" src="/beneficio-6.png" alt="7 idiomas diferentes" />
-							<span class="beneficio-sticker beneficio-sticker-green">wow!</span>
-						</div>
-						<p>Sembrará bases de hasta <strong>7 idiomas diferentes</strong></p>
+					<div class="hero-form-wrap">
+						<form class="lead-form" id="form-cierre" onsubmit="return enviarLead(event, 'form-cierre')">
+							<h2 class="form-title">Sí, quiero más información</h2>
+							<div class="form-field">
+								<label for="nombre-cierre">Tu nombre</label>
+								<input type="text" id="nombre-cierre" name="nombre" placeholder="Escribe tu nombre" required />
+							</div>
+							<div class="form-field">
+								<label for="whatsapp-cierre">Tu WhatsApp</label>
+								<input type="tel" id="whatsapp-cierre" name="whatsapp" placeholder="Ej: 300 123 4567" required />
+							</div>
+							<div class="form-field">
+								<label for="email-cierre">Tu correo</label>
+								<input type="email" id="email-cierre" name="email" placeholder="tucorreo@ejemplo.com" required />
+							</div>
+							<div class="form-field">
+								<label for="edad-cierre">Edad de tu bebé</label>
+								<select id="edad-cierre" name="edad" required>
+									<option value="" disabled selected>Selecciona una opción</option>
+									<option value="En gestación">En gestación</option>
+									<option value="0-1 años">0 a 1 años</option>
+									<option value="2-3 años">2 a 3 años</option>
+									<option value="4-5 años">4 a 5 años</option>
+									<option value="6 años">6 años</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-orange btn-block">SÍ, QUIERO MÁS INFORMACIÓN →</button>
+							<p class="form-legal">Al enviar tus datos aceptas que un asesor de Neuron Kids SAS te contacte. Tratamos tus datos según nuestra política de privacidad.</p>
+						</form>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- APRENDIZAJE NATURAL -->
-		<section class="section-natural">
-			<div class="cloud cloud-5"></div>
-			<div class="cloud cloud-6"></div>
-			<div class="container">
-				<div class="natural-grid">
-					<div class="natural-text">
-						<div class="natural-check">✓</div>
-						<div class="natural-tag">Un Aprendizaje Natural y Seguro para tu Bebé</div>
-						<p class="natural-lead">
-							A diferencia de otros métodos, <strong>Bebé Políglota NO usa pantallas ni tecnología que emita ondas</strong>, lo que lo hace <strong>100% seguro para la salud de tu bebé</strong>.
-						</p>
-						<a href="#formulario" class="btn btn-orange btn-xl">¡Quiero saber más!</a>
-					</div>
-					<div class="natural-image">
-						<div class="natural-image-shape">
-							<img src="/kit/album-booz.png" alt="Álbum Mágico de Booz" />
-						</div>
-						<div class="natural-decoration natural-deco-1">✦</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- CÓMO FUNCIONA -->
-		<section class="section-funciona">
-			<div class="container">
-				<div class="funciona-header">
-					<div class="funciona-tag">¿Cómo funciona?</div>
-				</div>
-				<div class="funciona-flow">
-					<div class="funciona-step funciona-step-1">
-						<div class="funciona-circle">
-							<img class="funciona-img" src="/funciona-1.png" alt="Señala un sticker" />
-							<span class="funciona-num">1</span>
-						</div>
-						<p class="funciona-texto">Tu hijo señala un sticker</p>
-					</div>
-					<div class="funciona-arrow">↪</div>
-					<div class="funciona-step funciona-step-2">
-						<div class="funciona-circle">
-							<img class="funciona-img" src="/funciona-2.png" alt="Suena en 7 idiomas" />
-							<span class="funciona-num">2</span>
-						</div>
-						<p class="funciona-texto">Suena en <strong>7 idiomas</strong></p>
-					</div>
-					<div class="funciona-arrow">↪</div>
-					<div class="funciona-step funciona-step-3">
-						<div class="funciona-circle">
-							<img class="funciona-img" src="/funciona-3.png" alt="Absorbe el vocabulario" />
-							<span class="funciona-num">3</span>
-						</div>
-						<p class="funciona-texto">Tu hijo absorbe el vocabulario</p>
-					</div>
-					<div class="funciona-arrow">↪</div>
-					<div class="funciona-step funciona-step-4">
-						<div class="funciona-circle">
-							<img class="funciona-img" src="/funciona-4.png" alt="Empieza a hablarlos" />
-							<span class="funciona-num">4</span>
-						</div>
-						<p class="funciona-texto">Y empieza a <strong>hablarlos</strong></p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- DETALLES DEL KIT -->
-		<section class="section-detalles">
-			<div class="container">
-				<div class="detalles-grid">
-					<div class="detalles-text">
-						<ul class="detalles-list">
-							<li>
-								<span class="detalles-check">✓</span>
-								<span>Funciona con un <strong>kit físico completo</strong>: cartillas, álbum, glosario y emoticartas.</span>
-							</li>
-							<li>
-								<span class="detalles-check">✓</span>
-								<span>Incluye cartillas temáticas con <strong>palabras, imágenes reales y pronunciación</strong> en 7 idiomas.</span>
-							</li>
-							<li>
-								<span class="detalles-check">✓</span>
-								<span>Trae el <strong>Álbum Mágico de Booz</strong> con 650 stickers para asociar palabras y sonidos.</span>
-							</li>
-							<li>
-								<span class="detalles-check">✓</span>
-								<span>Las <strong>Emoticartas de Pavinchi</strong> fortalecen la inteligencia emocional desde temprana edad.</span>
-							</li>
-							<li>
-								<span class="detalles-check">✓</span>
-								<span>Solo necesitas <strong>10 minutos al día</strong> para ver resultados.</span>
-							</li>
-						</ul>
-						<a href="#formulario" class="btn btn-orange btn-xl">¡Quiero saber más!</a>
-					</div>
-					<div class="detalles-image">
-						<div class="detalles-image-shape">
-							<img src="/kit/cuerpo-humano.png" alt="Niño aprendiendo con Bebé Políglota" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- FORMULARIO (FULLSCREEN) -->
-		<section class="section-form" id="formulario">
-			<div class="form-grid">
-				<div class="form-left">
-					<h2 class="form-title">
-						La ventana de oportunidad <br/>se cierra a los 6 años...
-					</h2>
-					<div class="form-subtitle">Su futuro empieza hoy.</div>
-					<p class="form-text">
-						La mayoría de los padres no saben que el cerebro de su bebé está en su máximo potencial para absorber nuevos conocimientos en esta etapa. <strong>¡Aprovecha esta ventana de oro antes de que se cierre!</strong>
-					</p>
-				</div>
-				<div class="form-right">
-					<form class="form-card" onsubmit="handleSubmit(event)">
-						<input type="text" name="nombre" placeholder="Nombre" required />
-						<input type="tel" name="telefono" placeholder="Teléfono" required />
-						<input type="text" name="ciudad" placeholder="Ciudad" required />
-						<input type="email" name="email" placeholder="Email" required />
-						<button type="submit" class="btn-form">ENVIAR</button>
-					</form>
-				</div>
-			</div>
-		</section>
-
-		<!-- FOOTER -->
+		<!-- ===== 7. FOOTER ===== -->
 		<footer class="footer">
 			<div class="container">
 				<div class="footer-content">
 					<div class="footer-brand">
-						<div class="footer-logo-box">
-							<img src="/logo.png" alt="Bebé Políglota" />
-						</div>
-						<p class="footer-tagline">La cuna de nuevos idiomas.</p>
+						<img src="/logo.png" alt="Bebé Políglota" class="footer-logo" />
+						<span class="footer-tagline">El método que multiplica idiomas</span>
 					</div>
 					<div class="footer-info">
-						<p>© 2026 Bebé Políglota · Colombia</p>
-						<p>📞 +57 300 920 9034</p>
+						<p>Neuron Kids S.A.S.</p>
+						<a href="/politica-privacidad">Política de privacidad</a>
 					</div>
 				</div>
 			</div>
 		</footer>
 
-		<!-- WHATSAPP FLOAT -->
-		<a href={`https://wa.me/${whatsappNumber}`} class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><span>💬</span></a>
+		<!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
+		<a href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`} class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+			<svg viewBox="0 0 32 32" width="32" height="32" fill="white"><path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.2c2.3 1.3 4.9 1.9 7.7 1.9 8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.3c-2.5 0-4.9-.7-7-1.9l-.5-.3-4.9 1.3 1.3-4.8-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.1C2.5 8.6 8.6 2.5 16 2.5S29.5 8.6 29.5 16 23.4 29.3 16 29.3zm7.4-9.9c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.3s1.4 3.8 1.6 4.1c.2.3 2.8 4.3 6.8 6 .9.4 1.7.6 2.3.8 1 .3 1.8.3 2.5.2.8-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>
+		</a>
 
-		<script is:inline>
-			function handleSubmit(event) {
-				event.preventDefault();
-				const formData = new FormData(event.target);
-				alert(`¡Listo ${formData.get('nombre')}! Te llamamos pronto.`);
-				event.target.reset();
-			}
-		</script>
+		<!-- ===== MODAL DE CONFIRMACIÓN ===== -->
+		<div class="modal-overlay" id="modal-exito">
+			<div class="modal-box">
+				<div class="modal-check">✓</div>
+				<h3>¡Listo!</h3>
+				<p>Un asesor te contacta hoy mismo.</p>
+				<button class="btn btn-orange" onclick="cerrarModal()">Entendido</button>
+			</div>
+		</div>
 
 		<style is:global>
-			* { box-sizing: border-box; margin: 0; padding: 0; }
 			:root {
 				--purple: #7C3AED; --purple-dark: #5B21B6; --purple-light: #A78BFA; --purple-soft: #F3E8FF;
 				--pink: #EC4899; --pink-dark: #BE185D; --pink-light: #F9A8D4;
@@ -346,26 +271,28 @@ const whatsappNumber = "573009209034";
 				--sky-soft: #E0F2FE; --sky-medium: #BAE6FD; --sky-light: #F0F9FF;
 				--lavender-soft: #EDE9FE; --cream-soft: #FEF9C3;
 				--text-dark: #1E1B4B; --text-medium: #4B5563; --text-light: #6B7280;
+				--ink: #1E3A8A;
 				--white: #FFFFFF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
 				--font-display: 'Nunito', sans-serif; --font-body: 'Quicksand', sans-serif;
 				--radius: 16px; --radius-lg: 24px; --radius-xl: 32px; --radius-2xl: 48px;
 				--shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
 				--shadow-lg: 0 12px 40px rgba(124, 58, 237, 0.15);
 			}
+			* { margin: 0; padding: 0; box-sizing: border-box; }
 			html { scroll-behavior: smooth; }
 			body { font-family: var(--font-body); color: var(--text-dark); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; background: var(--white); }
 			.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+			.container-narrow { max-width: 760px; }
 
 			h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; color: var(--text-dark); line-height: 1.2; }
-			.text-purple { color: #1E3A8A; }
-			.text-cyan { color: var(--cyan); }
+			.text-purple { color: var(--ink); }
 
 			/* BOTONES */
-			.btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; border-radius: 100px; font-weight: 800; text-decoration: none; transition: all 0.25s; border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
+			.btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 100px; font-weight: 800; text-decoration: none; transition: all 0.25s; border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; text-align: center; }
 			.btn-orange {
 				background: linear-gradient(135deg, #FF7A18 0%, #FF5722 100%);
 				color: var(--white);
-				box-shadow: 0 8px 24px rgba(255, 87, 34, 0.45), 0 0 0 rgba(255, 122, 24, 0.6);
+				box-shadow: 0 8px 24px rgba(255, 87, 34, 0.45);
 				position: relative;
 				overflow: hidden;
 				animation: latido 2.6s ease-in-out infinite;
@@ -373,265 +300,281 @@ const whatsappNumber = "573009209034";
 			.btn-orange::after {
 				content: '';
 				position: absolute;
-				top: 0;
-				left: -120%;
-				width: 80%;
-				height: 100%;
+				top: 0; left: -120%;
+				width: 80%; height: 100%;
 				background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
 				transform: skewX(-20deg);
 				animation: brillo 2.8s ease-in-out infinite;
 			}
 			.btn-orange:hover { background: linear-gradient(135deg, #FF6A00 0%, #E64A19 100%); transform: translateY(-2px) scale(1.03); }
-
 			@keyframes latido {
 				0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(255, 87, 34, 0.45), 0 0 0 0 rgba(255, 122, 24, 0.5); }
-				50% { transform: scale(1.05); box-shadow: 0 12px 30px rgba(255, 87, 34, 0.55), 0 0 0 12px rgba(255, 122, 24, 0); }
+				50% { transform: scale(1.04); box-shadow: 0 12px 30px rgba(255, 87, 34, 0.55), 0 0 0 12px rgba(255, 122, 24, 0); }
 			}
-			@keyframes brillo {
-				0% { left: -120%; }
-				50% { left: 120%; }
-				100% { left: 120%; }
-			}
+			@keyframes brillo { 0% { left: -120%; } 50% { left: 120%; } 100% { left: 120%; } }
 			.btn-xl { padding: 18px 44px; font-size: 1.1rem; }
+			.btn-block { width: 100%; }
 
-			/* NUBES decorativas */
+			/* NUBES */
 			.cloud { position: absolute; background: var(--white); border-radius: 50%; opacity: 0.85; pointer-events: none; }
 			.cloud::before, .cloud::after { content: ''; position: absolute; background: var(--white); border-radius: 50%; }
-			.cloud-1 { width: 80px; height: 50px; top: 15%; left: 8%; }
+			.cloud-1 { width: 80px; height: 50px; top: 12%; left: 6%; }
 			.cloud-1::before { width: 50px; height: 50px; top: -20px; left: 10px; }
 			.cloud-1::after { width: 40px; height: 40px; top: -15px; right: 10px; }
-			.cloud-2 { width: 100px; height: 60px; top: 25%; right: 10%; }
+			.cloud-2 { width: 100px; height: 60px; top: 18%; right: 8%; }
 			.cloud-2::before { width: 60px; height: 60px; top: -25px; left: 15px; }
 			.cloud-2::after { width: 50px; height: 50px; top: -20px; right: 12px; }
-			.cloud-3 { width: 70px; height: 40px; bottom: 20%; left: 15%; }
+			.cloud-3 { width: 70px; height: 40px; bottom: 22%; left: 10%; }
 			.cloud-3::before { width: 45px; height: 45px; top: -18px; left: 8px; }
-			.cloud-4 { width: 90px; height: 50px; bottom: 12%; right: 18%; }
+			.cloud-4 { width: 90px; height: 50px; bottom: 14%; right: 12%; }
 			.cloud-4::before { width: 55px; height: 55px; top: -22px; left: 12px; }
 			.cloud-4::after { width: 40px; height: 40px; top: -15px; right: 8px; }
 			.cloud-5 { width: 80px; height: 45px; top: 10%; left: 5%; }
 			.cloud-5::before { width: 50px; height: 50px; top: -20px; left: 10px; }
-			.cloud-6 { width: 70px; height: 40px; top: 60%; right: 8%; }
+			.cloud-6 { width: 70px; height: 40px; top: 60%; right: 6%; }
 			.cloud-6::before { width: 45px; height: 45px; top: -18px; left: 8px; }
+
+			/* TOPBAR */
+			.topbar {
+				background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 100%);
+				color: var(--white);
+				text-align: center;
+				padding: 10px 16px;
+				font-weight: 700;
+				font-size: 0.95rem;
+				font-family: var(--font-display);
+			}
 
 			/* HERO */
 			.hero {
 				background: linear-gradient(180deg, var(--sky-medium) 0%, var(--sky-soft) 100%);
-				padding: 60px 0 80px;
+				padding: 48px 0 64px;
 				position: relative;
 				overflow: hidden;
-				min-height: 600px;
 			}
 			.hero-grid {
 				display: grid;
-				grid-template-columns: 1fr auto 1.15fr;
-				gap: 24px;
+				grid-template-columns: 1.1fr 0.9fr;
+				gap: 48px;
 				align-items: center;
 				position: relative;
 				z-index: 2;
 			}
-			.hero-nino-col {
-				display: flex;
-				align-items: flex-end;
-				justify-content: center;
-				align-self: stretch;
-				width: 270px;
-				flex-shrink: 0;
+			.hero-logo { margin-bottom: 24px; }
+			.hero-logo img { height: 72px; width: auto; }
+			.hero-antetitulo {
+				display: inline-block;
+				background: rgba(124, 58, 237, 0.1);
+				color: var(--purple-dark);
+				font-weight: 700;
+				font-size: 0.95rem;
+				padding: 7px 18px;
+				border-radius: 100px;
+				margin-bottom: 18px;
+				font-family: var(--font-display);
 			}
-			.hero-nino {
-				width: 270px !important;
-				max-width: 270px;
-				height: auto !important;
-				display: block;
-				filter: drop-shadow(0 12px 28px rgba(0,0,0,0.2));
-				pointer-events: none;
-			}
-			.hero-text {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				text-align: left;
-			}
-			.hero-logo { margin-bottom: 44px; }
-			.hero-logo img { height: 84px; }
 			.hero-title {
 				font-family: var(--font-display);
-				font-size: clamp(1.5rem, 2.7vw, 2.05rem);
-				font-weight: 700;
-				color: #1E3A8A;
-				line-height: 1.5;
-				margin-bottom: 28px;
-				max-width: 520px;
-				letter-spacing: 0;
-			}
-			.hero-title strong { font-weight: 900; color: #1E3A8A; }
-			.hero-subtitle {
-				font-size: 1.2rem;
-				color: var(--text-dark);
-				margin-bottom: 32px;
-				font-weight: 500;
-				line-height: 1.65;
-			}
-			.hero-subtitle strong { font-size: 1.45rem; font-weight: 800; }
-			.hero-badge {
-				display: inline-flex;
-				align-items: center;
-				gap: 4px;
-				margin-top: 4px;
-				background: rgba(30, 58, 138, 0.08);
-				color: #1E3A8A;
-				padding: 12px 24px;
-				border-radius: 100px;
-				font-weight: 700;
-				font-size: 1.05rem;
-				text-align: center;
-				line-height: 1.3;
-				letter-spacing: 0.01em;
-				border: 1.5px solid rgba(30, 58, 138, 0.18);
-				position: relative;
-			}
-			.badge-num {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				min-width: 30px;
-				height: 30px;
-				background: #1E3A8A;
-				color: #FFFFFF;
-				border-radius: 50%;
+				font-size: clamp(1.8rem, 3.6vw, 2.8rem);
 				font-weight: 900;
-				font-size: 1.1rem;
-				margin: 0 3px;
-				vertical-align: middle;
+				color: var(--ink);
+				line-height: 1.25;
+				margin-bottom: 20px;
 			}
-			@keyframes brillo-badge {
-				0% { left: -130%; }
-				35% { left: 130%; }
-				100% { left: 130%; }
+			.hero-title strong { color: var(--ink); }
+			.hero-subtitle {
+				font-size: 1.15rem;
+				color: var(--text-medium);
+				line-height: 1.7;
+				font-weight: 500;
 			}
-			@keyframes latido-badge {
-				0%, 100% { transform: scale(1); }
-				50% { transform: scale(1.04); }
+
+			/* FORMULARIO */
+			.hero-form-wrap { position: relative; z-index: 2; }
+			.lead-form {
+				background: var(--white);
+				border-radius: var(--radius-xl);
+				padding: 32px 28px;
+				box-shadow: 0 20px 60px rgba(30, 58, 138, 0.18);
+				border: 3px solid var(--white);
 			}
-			.hero-image {
-				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 0;
+			.form-title {
+				font-family: var(--font-display);
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: var(--ink);
+				text-align: center;
+				margin-bottom: 22px;
 			}
-			.hero-image-circle {
+			.form-field { margin-bottom: 16px; }
+			.form-field label {
+				display: block;
+				font-weight: 700;
+				font-size: 0.92rem;
+				color: var(--text-dark);
+				margin-bottom: 6px;
+				font-family: var(--font-display);
+			}
+			.form-field input, .form-field select {
 				width: 100%;
-				max-width: 500px;
+				padding: 14px 16px;
+				border: 2px solid var(--gray-200);
+				border-radius: var(--radius);
+				font-size: 1rem;
+				font-family: var(--font-body);
+				color: var(--text-dark);
+				background: var(--white);
+				transition: border-color 0.2s;
+			}
+			.form-field input:focus, .form-field select:focus {
+				outline: none;
+				border-color: var(--cyan);
+			}
+			.form-micro, .form-legal {
+				text-align: center;
+				color: var(--text-light);
+				margin-top: 12px;
+			}
+			.form-micro { font-size: 0.9rem; font-weight: 600; }
+			.form-legal { font-size: 0.78rem; line-height: 1.45; }
+			.btn-block { margin-top: 6px; }
+
+			/* SECCIÓN CONEXIÓN */
+			.section-conexion {
+				background: var(--white);
+				padding: 72px 0;
+				text-align: center;
+			}
+			.conexion-frase {
+				font-size: 1.3rem;
+				color: var(--text-dark);
+				line-height: 1.7;
+				font-weight: 500;
+				margin-bottom: 24px;
+			}
+			.conexion-frase:last-child { margin-bottom: 0; }
+			.conexion-pregunta {
+				font-family: var(--font-display);
+				font-size: 1.6rem;
+				font-weight: 800;
+				color: var(--ink);
+			}
+
+			/* SECCIÓN COMÚN */
+			.seccion-titulo {
+				font-family: var(--font-display);
+				font-size: clamp(1.6rem, 3vw, 2.3rem);
+				font-weight: 900;
+				color: var(--ink);
+				line-height: 1.25;
+				margin-bottom: 20px;
+			}
+			.seccion-cuerpo {
+				font-size: 1.15rem;
+				color: var(--text-medium);
+				line-height: 1.75;
+				font-weight: 500;
+				margin-bottom: 22px;
+			}
+			.frase-destacada {
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: var(--pink-dark);
+				line-height: 1.5;
+				background: var(--purple-soft);
+				padding: 20px 24px;
+				border-radius: var(--radius-lg);
+				border-left: 5px solid var(--pink);
+			}
+
+			/* SECCIÓN VENTANA */
+			.section-ventana {
+				background: linear-gradient(180deg, var(--sky-soft) 0%, var(--lavender-soft) 100%);
+				padding: 80px 0;
+				position: relative;
+				overflow: hidden;
+			}
+			.ventana-grid {
+				display: grid;
+				grid-template-columns: 0.85fr 1.15fr;
+				gap: 56px;
+				align-items: center;
+				position: relative;
+				z-index: 2;
+			}
+			.ventana-imagenes { display: flex; flex-direction: column; gap: 20px; }
+			.ventana-img-card {
+				background: var(--white);
+				border-radius: var(--radius-lg);
+				padding: 18px;
+				box-shadow: var(--shadow);
+				display: flex;
+				align-items: center;
+				gap: 18px;
+			}
+			.ventana-img-card img { width: 72px; height: 72px; object-fit: contain; flex-shrink: 0; }
+			.ventana-img-card span {
+				font-family: var(--font-display);
+				font-weight: 800;
+				color: var(--ink);
+				font-size: 1.1rem;
+			}
+
+			/* SECCIÓN MÉTODO */
+			.section-metodo {
+				background: var(--white);
+				padding: 80px 0;
+			}
+			.metodo-grid {
+				display: grid;
+				grid-template-columns: 1.15fr 0.85fr;
+				gap: 56px;
+				align-items: center;
+			}
+			.metodo-puntos { list-style: none; margin-top: 8px; }
+			.metodo-puntos li {
+				display: flex;
+				align-items: center;
+				gap: 14px;
+				font-size: 1.15rem;
+				font-weight: 600;
+				color: var(--text-dark);
+				padding: 12px 0;
+				border-bottom: 1px solid var(--gray-100);
+			}
+			.metodo-puntos li:last-child { border-bottom: none; }
+			.punto-icon { font-size: 1.6rem; flex-shrink: 0; }
+			.metodo-imagen { display: flex; justify-content: center; }
+			.metodo-img-circle {
+				width: 100%;
+				max-width: 340px;
 				aspect-ratio: 1;
-				flex-shrink: 0;
 				background: radial-gradient(circle, #DBEAFE 30%, #93C5FD 70%, #60A5FA 100%);
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				position: relative;
 				box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
 			}
-			.hero-image-circle img {
-				width: 92%;
-				height: 92%;
-				object-fit: contain;
-				filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
-			}
-			.hero-claves {
-				display: flex;
-				flex-direction: column;
-				gap: 10px;
-				justify-content: center;
-				flex-shrink: 0;
-				max-width: 280px;
-				margin-left: -30px;
-				z-index: 3;
-			}
-			.hero-clave {
-				display: flex;
-				align-items: center;
-				gap: 14px;
-			}
-			.hero-clave-circle {
-				width: 145px;
-				height: 145px;
-				min-width: 145px;
-				min-height: 145px;
-				max-width: 145px;
-				max-height: 145px;
-				border-radius: 50%;
-				flex-shrink: 0;
-				overflow: hidden;
-				border: 5px solid var(--white);
-				box-shadow: 0 8px 22px rgba(0,0,0,0.18);
-				background: radial-gradient(circle, #DBEAFE 30%, #93C5FD 100%);
-			}
-			.hero-clave-circle img {
-				width: 100% !important;
-				height: 100% !important;
-				max-width: 100%;
-				max-height: 100%;
-				object-fit: cover;
-				display: block;
-			}
-			.hero-clave-texto {
-				display: flex;
-				flex-direction: column;
-				line-height: 1.3;
-			}
-			.hero-clave-texto strong {
-				font-family: var(--font-display);
-				font-weight: 900;
-				font-size: 1.15rem;
-				color: var(--purple-dark);
-			}
-			.hero-clave-texto span {
-				font-family: var(--font-body);
-				font-weight: 600;
-				font-size: 1rem;
-				color: var(--text-dark);
-			}
+			.metodo-img-circle img { width: 88%; height: 88%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
 
-			/* VIDEO SECTION */
+			/* SECCIÓN VIDEO */
 			.section-video {
 				padding: 80px 0;
-				background: var(--sky-soft);
-				position: relative;
+				background: linear-gradient(180deg, var(--lavender-soft) 0%, var(--sky-soft) 100%);
 			}
-			.video-layout {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 48px;
-				max-width: 1100px;
-				margin: 0 auto;
-			}
+			.video-layout { display: flex; flex-direction: column; align-items: center; gap: 40px; max-width: 1000px; margin: 0 auto; }
 			.video-titulo {
 				font-family: var(--font-display);
-				font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+				font-size: clamp(1.7rem, 3vw, 2.4rem);
 				font-weight: 900;
-				color: #1E3A8A;
+				color: var(--ink);
 				text-align: center;
-				line-height: 1.2;
-				margin-bottom: -8px;
+				line-height: 1.25;
 			}
-			.video-text {
-				position: relative;
-				text-align: center;
-				max-width: 680px;
-			}
-			.video-trio {
-				display: flex;
-				gap: 20px;
-				justify-content: center;
-				width: 100%;
-			}
-			.video-trio .video-vertical {
-				flex: 1;
-				min-width: 0;
-				max-width: 300px;
-			}
+			.video-trio { display: flex; gap: 18px; justify-content: center; width: 100%; }
+			.video-trio .video-vertical { flex: 1; min-width: 0; max-width: 280px; }
 			.video-vertical {
 				background: #000;
 				border-radius: var(--radius-lg);
@@ -640,607 +583,134 @@ const whatsappNumber = "573009209034";
 				box-shadow: 0 20px 50px rgba(0,0,0,0.18);
 				border: 4px solid var(--white);
 			}
-			.video-vertical video {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
-			}
-			.video-text {
-				position: relative;
-			}
-			.video-decoration {
-				position: absolute;
-				top: -40px;
-				left: -40px;
-				width: 80px;
-				height: 80px;
-				background: var(--green-light);
-				border-radius: 50%;
-				opacity: 0.6;
-				z-index: 0;
-			}
-			.video-lead {
-				font-size: 1.3rem;
-				color: var(--text-dark);
-				margin-bottom: 28px;
-				line-height: 1.7;
-				position: relative;
-				z-index: 1;
-				font-weight: 500;
-			}
-			.video-lead strong { font-weight: 800; color: var(--purple-dark); }
-			.video-highlight {
-				font-family: var(--font-display);
-				font-size: 1.5rem;
-				font-weight: 800;
-				color: var(--purple-dark);
-				margin-bottom: 32px;
-				line-height: 1.45;
-				position: relative;
-				z-index: 1;
-			}
+			.video-vertical video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-			/* RESPALDO CIENTÍFICO — Lavanda suave */
-			.section-respaldo {
-				padding: 80px 0;
-				background: var(--sky-soft);
+			/* SECCIÓN CIERRE */
+			.section-cierre {
+				background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
+				padding: 72px 0;
 			}
-			.respaldo-grid {
-				display: grid;
-				grid-template-columns: 1fr 1.2fr;
-				gap: 60px;
-				align-items: center;
-				max-width: 1050px;
-				margin: 0 auto;
-			}
-			.respaldo-image {
-				position: relative;
-				display: flex;
-				justify-content: center;
-			}
-			.respaldo-image-bg {
-				position: absolute;
-				inset: -20px;
-				background: radial-gradient(circle, var(--purple-light) 0%, transparent 70%);
-				border-radius: 50%;
-				z-index: 0;
-				opacity: 0.4;
-			}
-			.respaldo-image img {
-				width: 100%;
-				max-width: 320px;
-				aspect-ratio: 1;
-				object-fit: cover;
-				border-radius: 50%;
-				border: 8px solid var(--white);
-				box-shadow: 0 20px 50px rgba(124, 58, 237, 0.25);
-				position: relative;
-				z-index: 1;
-			}
-			.respaldo-content {
-				background: var(--white);
-				padding: 36px 36px 32px;
-				border-radius: var(--radius-xl);
-				box-shadow: 0 16px 40px rgba(124, 58, 237, 0.15);
-				position: relative;
-			}
-			.respaldo-badge-icon {
-				position: absolute;
-				top: -28px;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 56px;
-				height: 56px;
-				background: linear-gradient(135deg, var(--yellow), var(--orange));
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.8rem;
-				box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
-			}
-			.respaldo-list {
-				list-style: none;
-				padding: 0;
-				margin: 16px 0 0;
-				display: flex;
-				flex-direction: column;
-				gap: 16px;
-			}
-			.respaldo-list li {
-				display: flex;
-				align-items: flex-start;
-				gap: 14px;
-				color: var(--text-dark);
-				font-size: 1.2rem;
-				line-height: 1.55;
-			}
-			.respaldo-check {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 24px;
-				height: 24px;
-				background: var(--purple);
-				color: var(--white);
-				border-radius: 50%;
-				font-weight: 900;
-				font-size: 0.85rem;
-				flex-shrink: 0;
-				margin-top: 2px;
-			}
-			.respaldo-list strong { color: var(--purple-dark); font-weight: 800; }
-
-			/* BENEFICIOS */
-			.section-beneficios {
-				padding: 80px 0;
-				background: var(--gray-50);
-			}
-			.beneficios-header {
-				text-align: center;
-				margin-bottom: 56px;
-			}
-			.beneficios-tag {
-				display: inline-block;
-				background: var(--sky-medium);
-				color: var(--purple-dark);
-				padding: 14px 36px;
-				border-radius: 100px;
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 1.3rem;
-				box-shadow: 0 6px 20px rgba(6, 182, 212, 0.2);
-			}
-			.beneficios-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 32px 48px;
-				max-width: 900px;
-				margin: 0 auto;
-			}
-			.beneficio-item {
-				text-align: center;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.beneficio-circle {
-				width: 140px;
-				height: 140px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				position: relative;
-				margin-bottom: 20px;
-				box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-				transition: transform 0.3s ease;
-			}
-			.beneficio-item:hover .beneficio-circle { transform: translateY(-6px) scale(1.05); }
-			.beneficio-circle-1 { background: linear-gradient(135deg, #FCA5A5, #F87171); }
-			.beneficio-circle-2 { background: linear-gradient(135deg, #BFDBFE, #93C5FD); }
-			.beneficio-circle-3 { background: linear-gradient(135deg, #FDE68A, #FCD34D); }
-			.beneficio-circle-4 { background: linear-gradient(135deg, #C7D2FE, #A5B4FC); }
-			.beneficio-circle-5 { background: linear-gradient(135deg, #BBF7D0, #86EFAC); }
-			.beneficio-circle-6 { background: linear-gradient(135deg, #DDD6FE, #C4B5FD); }
-			.beneficio-emoji { font-size: 4rem; line-height: 1; }
-			.beneficio-img { width: 78%; height: 78%; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
-			.beneficio-sticker {
-				position: absolute;
-				top: -8px;
-				right: -8px;
-				background: var(--white);
-				border-radius: 50%;
-				width: 50px;
-				height: 50px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 0.8rem;
-				font-style: italic;
-				box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-			}
-			.beneficio-sticker-yellow { background: var(--yellow); color: var(--white); }
-			.beneficio-sticker-green { background: var(--green); color: var(--white); top: -8px; left: -8px; right: auto; }
-			.beneficio-item p {
-				font-family: var(--font-display);
-				font-weight: 700;
-				color: var(--purple-dark);
-				font-size: 0.95rem;
-				line-height: 1.4;
-				max-width: 200px;
-			}
-			.beneficio-item p strong { font-weight: 900; }
-
-			/* APRENDIZAJE NATURAL */
-			.section-natural {
-				padding: 80px 0;
-				background: linear-gradient(180deg, var(--sky-soft) 0%, var(--sky-medium) 100%);
-				position: relative;
-				overflow: hidden;
-			}
-			.natural-grid {
+			.cierre-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				gap: 60px;
+				gap: 48px;
 				align-items: center;
-				position: relative;
-				z-index: 2;
 			}
-			.natural-text { position: relative; }
-			.natural-check {
-				width: 56px;
-				height: 56px;
-				border-radius: 50%;
-				background: var(--white);
-				border: 4px solid var(--cyan);
-				color: var(--cyan);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.6rem;
+			.cierre-titulo {
+				font-family: var(--font-display);
+				font-size: clamp(1.7rem, 3vw, 2.4rem);
 				font-weight: 900;
-				margin-bottom: 20px;
-				box-shadow: 0 6px 20px rgba(6, 182, 212, 0.2);
-			}
-			.natural-tag {
-				display: inline-block;
-				background: var(--purple);
 				color: var(--white);
-				padding: 14px 28px;
-				border-radius: 100px;
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 1.15rem;
-				margin-bottom: 24px;
-				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+				line-height: 1.25;
+				margin-bottom: 18px;
 			}
-			.natural-lead {
-				font-size: 1.35rem;
-				color: var(--purple-dark);
-				margin-bottom: 32px;
-				line-height: 1.55;
+			.cierre-subtitulo {
+				font-size: 1.2rem;
+				color: rgba(255,255,255,0.95);
+				line-height: 1.7;
 				font-weight: 500;
+				margin-bottom: 14px;
 			}
-			.natural-lead strong { font-weight: 800; }
-			.natural-image {
-				position: relative;
-				display: flex;
-				justify-content: center;
+			.cierre-micro {
+				font-size: 0.95rem;
+				color: rgba(255,255,255,0.85);
+				font-weight: 600;
 			}
-			.natural-image-shape {
-				width: 100%;
-				max-width: 500px;
-				aspect-ratio: 1;
-				background: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 100%);
-				border-radius: 50% 45% 50% 45% / 45% 50% 45% 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
-			}
-			.natural-image-shape img {
-				width: 92%;
-				height: 92%;
-				object-fit: contain;
-				filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
-			}
-			.natural-decoration {
-				position: absolute;
-				color: var(--cyan);
-				font-size: 3rem;
-			}
-			.natural-deco-1 { bottom: 10%; right: -10px; }
 
-			/* CÓMO FUNCIONA */
-			.section-funciona {
-				padding: 80px 0;
-				background: var(--gray-50);
-			}
-			.funciona-header {
-				text-align: center;
-				margin-bottom: 60px;
-			}
-			.funciona-tag {
-				display: inline-block;
-				background: var(--purple);
+			/* FOOTER */
+			.footer {
+				background: var(--text-dark);
 				color: var(--white);
-				padding: 16px 44px;
-				border-radius: 100px;
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 1.4rem;
-				box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+				padding: 28px 0;
 			}
-			.funciona-flow {
+			.footer-content {
 				display: flex;
-				justify-content: center;
 				align-items: center;
-				gap: 16px;
+				justify-content: space-between;
+				gap: 20px;
 				flex-wrap: wrap;
 			}
-			.funciona-step {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 8px;
-			}
-			.funciona-circle {
-				width: 210px;
-				height: 210px;
-				border-radius: 50%;
-				background: var(--white);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				position: relative;
-				box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-				overflow: visible;
-			}
-			.funciona-img {
-				width: 88% !important;
-				height: 88% !important;
-				object-fit: cover;
-				display: block;
-				border-radius: 50%;
-			}
-			.funciona-num {
-				position: absolute;
-				top: 6px;
-				right: 6px;
-				width: 48px;
-				height: 48px;
-				background: var(--purple);
-				color: var(--white);
+			.footer-brand { display: flex; align-items: center; gap: 14px; }
+			.footer-logo { height: 36px; width: auto; filter: brightness(0) invert(1); }
+			.footer-tagline { font-size: 0.95rem; color: rgba(255,255,255,0.8); font-weight: 600; }
+			.footer-info { text-align: right; font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+			.footer-info a { color: var(--cyan-light); text-decoration: none; }
+			.footer-info a:hover { text-decoration: underline; }
+
+			/* WHATSAPP FLOTANTE */
+			.whatsapp-float {
+				position: fixed;
+				bottom: 22px;
+				right: 22px;
+				width: 60px;
+				height: 60px;
+				background: #25D366;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-family: var(--font-display);
-				font-size: 1.4rem;
-				font-weight: 900;
-				border: 4px solid var(--white);
-				box-shadow: 0 4px 10px rgba(124, 58, 237, 0.35);
+				box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+				z-index: 999;
+				transition: transform 0.2s;
+				animation: wa-pulse 2.5s ease-in-out infinite;
 			}
-			.funciona-texto {
-				margin-top: 20px;
-				max-width: 210px;
-				text-align: center;
-				font-family: var(--font-display);
-				font-weight: 700;
-				font-size: 1.3rem;
-				color: var(--purple-dark);
-				line-height: 1.35;
-			}
-			.funciona-texto strong { font-weight: 900; }
-			.funciona-arrow {
-				font-size: 3rem;
-				color: var(--purple);
-				font-weight: 900;
-				align-self: flex-start;
-				margin-top: 80px;
-			}
-
-			/* DETALLES — Cyan súper suave */
-			.section-detalles {
-				padding: 80px 0;
-				background: var(--cyan-soft);
-			}
-			.detalles-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 60px;
-				align-items: center;
-				max-width: 1050px;
-				margin: 0 auto;
-			}
-			.detalles-list {
-				list-style: none;
-				padding: 0;
-				margin: 0 0 32px;
-				display: flex;
-				flex-direction: column;
-				gap: 16px;
-			}
-			.detalles-list li {
-				display: flex;
-				align-items: flex-start;
-				gap: 14px;
-				color: var(--text-dark);
-				font-size: 1.2rem;
-				line-height: 1.55;
-			}
-			.detalles-check {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 24px;
-				height: 24px;
-				background: var(--purple);
-				color: var(--white);
-				border-radius: 50%;
-				font-weight: 900;
-				font-size: 0.85rem;
-				flex-shrink: 0;
-				margin-top: 2px;
-			}
-			.detalles-list strong { color: var(--purple-dark); font-weight: 800; }
-			.detalles-image {
-				display: flex;
-				justify-content: center;
-			}
-			.detalles-image-shape {
-				width: 100%;
-				max-width: 460px;
-				aspect-ratio: 1;
-				background: linear-gradient(135deg, #BAE6FD 0%, #7DD3FC 100%);
-				border-radius: 50% 45% 50% 45% / 45% 50% 45% 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				box-shadow: 0 20px 50px rgba(6, 182, 212, 0.25);
-				overflow: hidden;
-			}
-			.detalles-image-shape img {
-				width: 95%;
-				height: 95%;
-				object-fit: contain;
-				filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
-			}
-
-			/* FORMULARIO — FULLSCREEN */
-			.section-form {
-				background: linear-gradient(135deg, #BAE6FD 0%, #7DD3FC 100%);
-				position: relative;
-				overflow: hidden;
-				padding: 35px 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-			.section-form::before {
-				content: '';
-				position: absolute;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 50%;
-				background-image: url('/hero-ninos.png');
-				background-size: cover;
-				background-position: center;
-				opacity: 0.25;
-			}
-			.form-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 60px;
-				align-items: center;
-				max-width: 1100px;
-				margin: 0 auto;
-				padding: 60px 24px;
-				width: 100%;
-				position: relative;
-				z-index: 2;
-			}
-			.form-title {
-				color: var(--white);
-				font-size: clamp(1.6rem, 3vw, 2.4rem);
-				font-weight: 800;
-				line-height: 1.25;
-				margin-bottom: 16px;
-				text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-			}
-			.form-subtitle {
-				display: inline-block;
-				background: var(--purple);
-				color: var(--white);
-				padding: 10px 28px;
-				border-radius: 100px;
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 1.25rem;
-				margin-bottom: 24px;
-				box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
-			}
-			.form-text {
-				color: var(--white);
-				font-size: 1.05rem;
-				line-height: 1.6;
-				text-shadow: 0 1px 8px rgba(0,0,0,0.15);
-			}
-			.form-text strong { font-weight: 800; }
-			.form-card {
-				background: var(--sky-medium);
-				padding: 32px;
-				border-radius: var(--radius-lg);
-				display: flex;
-				flex-direction: column;
-				gap: 16px;
-				box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-				border: 2px solid var(--white);
-			}
-			.form-card input {
-				padding: 18px 22px;
-				border-radius: 100px;
-				border: none;
-				background: var(--white);
-				font-family: var(--font-body);
-				font-size: 1rem;
-				color: var(--text-dark);
-			}
-			.form-card input::placeholder { color: var(--text-light); }
-			.form-card input:focus { outline: 2px solid var(--cyan); }
-			.btn-form {
-				padding: 18px 20px;
-				border-radius: 100px;
-				border: none;
-				background: linear-gradient(135deg, #FF7A18 0%, #FF5722 100%);
-				color: var(--white);
-				font-family: var(--font-display);
-				font-weight: 900;
-				font-size: 1.15rem;
-				cursor: pointer;
-				letter-spacing: 0.05em;
-				transition: all 0.25s;
-				box-shadow: 0 8px 24px rgba(255, 87, 34, 0.45);
-				margin-top: 4px;
-				position: relative;
-				overflow: hidden;
-				animation: latido 2.6s ease-in-out infinite;
-			}
-			.btn-form::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: -120%;
-				width: 80%;
-				height: 100%;
-				background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
-				transform: skewX(-20deg);
-				animation: brillo 2.8s ease-in-out infinite;
-			}
-			.btn-form:hover { background: linear-gradient(135deg, #FF6A00 0%, #E64A19 100%); transform: translateY(-2px) scale(1.03); }
-
-			/* FOOTER — Mini compacto */
-			.footer { background: var(--text-dark); color: var(--white); padding: 12px 0; }
-			.footer-content { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-			.footer-brand { display: flex; flex-direction: row; align-items: center; gap: 10px; }
-			.footer-logo-box {
-				display: inline-block;
-			}
-			.footer-logo-box img { height: 24px; display: block; filter: brightness(0) invert(1); }
-			.footer-tagline { color: rgba(255,255,255,0.7); margin-top: 0; font-style: italic; font-size: 0.72rem; }
-			.footer-info { color: rgba(255,255,255,0.7); font-size: 0.72rem; text-align: right; }
-			.footer-info p { margin: 1px 0; }
-
-			.whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,0.4); z-index: 50; transition: transform 0.25s; }
 			.whatsapp-float:hover { transform: scale(1.1); }
+			@keyframes wa-pulse {
+				0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+				50% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); }
+			}
 
-			/* RESPONSIVE */
+			/* MODAL */
+			.modal-overlay {
+				display: none;
+				position: fixed;
+				inset: 0;
+				background: rgba(30, 27, 75, 0.6);
+				z-index: 1000;
+				align-items: center;
+				justify-content: center;
+				padding: 20px;
+			}
+			.modal-overlay.activo { display: flex; }
+			.modal-box {
+				background: var(--white);
+				border-radius: var(--radius-xl);
+				padding: 40px 32px;
+				text-align: center;
+				max-width: 380px;
+				width: 100%;
+				box-shadow: var(--shadow-lg);
+			}
+			.modal-check {
+				width: 70px;
+				height: 70px;
+				background: var(--green);
+				color: var(--white);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2.4rem;
+				font-weight: 900;
+				margin: 0 auto 18px;
+			}
+			.modal-box h3 { font-size: 1.8rem; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+			.modal-box p { color: var(--text-medium); font-size: 1.1rem; margin-bottom: 22px; }
+
+			/* ===== RESPONSIVE ===== */
 			@media (max-width: 900px) {
-				.hero { padding: 32px 0 48px; min-height: auto; }
-				.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 12px; text-align: center; align-items: center; }
-				.hero-text { display: flex; flex-direction: column; align-items: center; order: 1; grid-column: 1 / -1; width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
-				.hero-title { max-width: 100%; }
-				.hero-nino-col { order: 2; grid-column: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
-				.hero-nino { width: 88% !important; max-width: 175px; height: auto !important; margin: 0; }
-				.hero-image { order: 3; grid-column: 2; display: flex; flex-direction: column; gap: 16px; align-items: center; width: 100%; }
-				.hero-image-circle { max-width: 165px; width: 100%; margin: 0 auto; }
-				.hero-image-circle img { width: 90% !important; height: auto !important; }
-				.hero-claves { flex-direction: row; flex-wrap: wrap; justify-content: center; margin-left: 0 !important; gap: 10px; }
-				.hero-clave-circle {
-					width: 72px !important;
-					height: 72px !important;
-					min-width: 72px !important;
-					min-height: 72px !important;
-					max-width: 72px !important;
-					max-height: 72px !important;
-				}
-				.hero-clave-circle img { width: 78% !important; height: 78% !important; object-fit: contain !important; }
-				.video-layout { gap: 28px; }
+				.hero { padding: 32px 0 48px; }
+				.hero-grid { grid-template-columns: 1fr; gap: 32px; }
+				.hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
+				.hero-title { font-size: 6vw; }
+				.ventana-grid { grid-template-columns: 1fr; gap: 32px; }
+				.ventana-texto { order: 1; text-align: center; }
+				.ventana-imagenes { order: 2; }
+				.metodo-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+				.metodo-imagen { order: -1; }
+				.metodo-puntos li { justify-content: center; text-align: left; }
+				.frase-destacada { text-align: left; }
+				.cierre-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
 				.video-trio {
 					flex-wrap: nowrap;
 					overflow-x: auto;
@@ -1250,50 +720,57 @@ const whatsappNumber = "573009209034";
 					scroll-snap-type: x mandatory;
 					-webkit-overflow-scrolling: touch;
 				}
-				.video-trio .video-vertical {
-					flex: 0 0 70%;
-					max-width: 70%;
-					scroll-snap-align: center;
-				}
-				.video-decoration { display: none; }
-				.respaldo-grid { grid-template-columns: 1fr; gap: 32px; }
-				.respaldo-image img { max-width: 240px; }
-				.beneficios-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
-				.beneficio-circle { width: 110px; height: 110px; }
-				.beneficio-emoji { font-size: 3rem; }
-				.natural-grid, .detalles-grid { grid-template-columns: 1fr; gap: 32px; }
-				.funciona-flow { flex-direction: column; gap: 8px; }
-				.funciona-arrow { transform: rotate(90deg); }
-				.section-form { padding: 40px 0; }
-				.form-grid { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
-				.section-form::before { width: 100%; opacity: 0.15; }
+				.video-trio .video-vertical { flex: 0 0 70%; max-width: 70%; scroll-snap-align: center; }
 				.footer-content { flex-direction: column; text-align: center; }
-				.footer-brand { flex-direction: row; justify-content: center; }
 				.footer-info { text-align: center; }
 			}
 
 			@media (max-width: 600px) {
-				.beneficios-grid { grid-template-columns: 1fr; }
-				.beneficio-item { max-width: 280px; margin: 0 auto; }
-				.hero-logo { margin-bottom: 18px !important; }
-				.hero-logo img { height: auto !important; width: auto !important; max-width: 75% !important; }
-				.hero-title { font-size: 4.6vw !important; line-height: 1.4 !important; margin-bottom: 16px !important; max-width: 100% !important; }
-				.hero-subtitle { font-size: 3.6vw !important; margin-bottom: 16px !important; }
-				.hero-badge { font-size: 3.6vw !important; }
-				.hero-grid { gap: 22px 10px !important; }
-				.hero-nino { width: 92% !important; max-width: 150px !important; }
-				.hero-image-circle { max-width: 150px !important; }
-				.hero-clave-circle {
-					width: 64px !important;
-					height: 64px !important;
-					min-width: 64px !important;
-					min-height: 64px !important;
-					max-width: 64px !important;
-					max-height: 64px !important;
-				}
-				.hero-claves { flex-wrap: wrap; gap: 8px; }
+				.hero-logo img { height: 56px; }
+				.hero-title { font-size: 6.5vw; }
+				.hero-subtitle { font-size: 1.05rem; }
+				.conexion-frase { font-size: 1.15rem; }
+				.conexion-pregunta { font-size: 1.35rem; }
+				.lead-form { padding: 26px 20px; }
+				.seccion-cuerpo { font-size: 1.05rem; }
 				.cloud { display: none; }
 			}
 		</style>
+
+		<script define:vars={{ webhookURL }}>
+			function enviarLead(event, formId) {
+				event.preventDefault();
+				const form = document.getElementById(formId);
+				const datos = {
+					nombre: form.querySelector('[name="nombre"]').value,
+					whatsapp: form.querySelector('[name="whatsapp"]').value,
+					email: form.querySelector('[name="email"]').value,
+					edad: form.querySelector('[name="edad"]').value,
+					origen: 'landing-bebe-poliglota'
+				};
+
+				// Meta Pixel: registrar Lead (si el pixel está activo)
+				if (typeof fbq !== 'undefined') { fbq('track', 'Lead'); }
+
+				// Enviar al webhook (panel de Sergio) si está configurado
+				if (webhookURL && webhookURL.length > 0) {
+					fetch(webhookURL, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(datos)
+					}).catch(function(err) { console.error('Error enviando lead:', err); });
+				} else {
+					console.log('Lead capturado (webhook sin configurar):', datos);
+				}
+
+				// Mostrar confirmación
+				document.getElementById('modal-exito').classList.add('activo');
+				form.reset();
+				return false;
+			}
+			function cerrarModal() {
+				document.getElementById('modal-exito').classList.remove('activo');
+			}
+		</script>
 	</body>
 </html>
