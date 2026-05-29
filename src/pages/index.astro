@@ -1221,15 +1221,25 @@ const whatsappNumber = "573009209034";
 
 			/* RESPONSIVE */
 			@media (max-width: 900px) {
-				.hero { padding: 40px 0 60px; min-height: auto; }
-				.hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-				.hero-text { display: flex; flex-direction: column; align-items: center; }
+				.hero { padding: 24px 0 40px; min-height: auto; }
+				.hero-grid { grid-template-columns: 1fr; gap: 18px; text-align: center; }
+				.hero-text { display: flex; flex-direction: column; align-items: center; order: 1; overflow-wrap: break-word; word-wrap: break-word; }
 				.hero-title { max-width: 100%; }
-				.hero-image-circle { max-width: 280px; margin: 0 auto; }
-				.hero-image { flex-direction: column; gap: 24px; }
-				.hero-clave-circle { width: 70px; height: 70px; }
-				.hero-nino { width: 160px; }
-				.hero-nino-col { order: 3; }
+				.hero-nino-col { order: 2; width: auto; display: flex; justify-content: center; }
+				.hero-nino { width: 150px !important; height: auto !important; margin: 0 auto; }
+				.hero-image { order: 3; flex-direction: column; gap: 18px; align-items: center; }
+				.hero-image-circle { max-width: 230px; width: 100%; margin: 0 auto; }
+				.hero-image-circle img { width: 90% !important; height: auto !important; }
+				.hero-claves { flex-direction: row; justify-content: center; margin-left: 0 !important; gap: 14px; }
+				.hero-clave-circle {
+					width: 90px !important;
+					height: 90px !important;
+					min-width: 90px !important;
+					min-height: 90px !important;
+					max-width: 90px !important;
+					max-height: 90px !important;
+				}
+				.hero-clave-circle img { width: 78% !important; height: 78% !important; object-fit: contain !important; }
 				.video-layout { gap: 28px; }
 				.video-trio {
 					flex-wrap: nowrap;
@@ -1265,7 +1275,22 @@ const whatsappNumber = "573009209034";
 			@media (max-width: 600px) {
 				.beneficios-grid { grid-template-columns: 1fr; }
 				.beneficio-item { max-width: 280px; margin: 0 auto; }
-				.hero-title { font-size: 1.3rem; }
+				.hero-logo { margin-bottom: 18px !important; }
+				.hero-logo img { height: auto !important; width: auto !important; max-width: 75% !important; }
+				.hero-title { font-size: 4.6vw !important; line-height: 1.4 !important; margin-bottom: 16px !important; max-width: 100% !important; }
+				.hero-subtitle { font-size: 3.6vw !important; margin-bottom: 16px !important; }
+				.hero-badge { font-size: 3.6vw !important; }
+				.hero-nino { width: 130px !important; }
+				.hero-image-circle { max-width: 190px !important; }
+				.hero-clave-circle {
+					width: 80px !important;
+					height: 80px !important;
+					min-width: 80px !important;
+					min-height: 80px !important;
+					max-width: 80px !important;
+					max-height: 80px !important;
+				}
+				.hero-claves { flex-wrap: wrap; gap: 10px; }
 				.cloud { display: none; }
 			}
 		</style>
