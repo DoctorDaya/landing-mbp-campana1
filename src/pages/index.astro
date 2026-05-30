@@ -52,7 +52,7 @@ const webhookURL = "";
 							Tu hijo puede aprender idiomas con una <strong>facilidad que tú nunca tuviste.</strong>
 						</h1>
 						<p class="hero-subtitle">
-							Entre los 0 y los 6 años el cerebro de tu hijo vive una ventana única que no se repite. Te mostramos cómo aprovecharla con un método respaldado por la ciencia. Déjanos tus datos y un asesor te explica cómo, sin costo.
+							Entre los 0 y los 6 años el cerebro de tu hijo vive una ventana única que no se repite. Te mostramos cómo aprovecharla con un método respaldado por la ciencia.
 						</p>
 					</div>
 					<div class="hero-imagen">
@@ -119,7 +119,6 @@ const webhookURL = "";
 					</div>
 					<div class="ventana-texto">
 						<h2 class="seccion-titulo">Los niños menores de 6 años aprenden idiomas hasta <span class="text-purple">7 veces más rápido</span> que un adulto.</h2>
-						<p class="seccion-cuerpo">El 90% del cerebro se forma antes de los 6 años. En esa etapa, el oído de tu hijo distingue los sonidos de cualquier idioma con una facilidad asombrosa. Es una ventana poderosa pero breve: no se vuelve a abrir. Empezar hoy es lo más impactante que puedes hacer por su futuro.</p>
 						<p class="frase-destacada">No buscamos que hable siete idiomas mañana. Preparamos su cerebro para que, cuando llegue el momento, aprender idiomas le resulte fácil para toda la vida.</p>
 					</div>
 				</div>
@@ -541,7 +540,7 @@ const webhookURL = "";
 			.metodo-imagen { display: flex; justify-content: center; }
 			.metodo-img-circle {
 				width: 100%;
-				max-width: 440px;
+				max-width: 480px;
 				aspect-ratio: 1;
 				background: radial-gradient(circle, #DBEAFE 30%, #93C5FD 70%, #60A5FA 100%);
 				border-radius: 50%;
@@ -550,7 +549,7 @@ const webhookURL = "";
 				justify-content: center;
 				box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
 			}
-			.metodo-img-circle img { width: 90%; height: 90%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
+			.metodo-img-circle img { width: 96%; height: 96%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
 
 			/* SECCIÓN VIDEO */
 			.section-video {
@@ -692,12 +691,15 @@ const webhookURL = "";
 
 			/* ===== RESPONSIVE ===== */
 			@media (max-width: 900px) {
-				.hero { padding: 32px 0 48px; }
-				.hero-top { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+				.hero { padding: 16px 0 40px; }
+				.hero-top { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
 				.hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; order: 1; }
+				.hero-logo { margin-bottom: 14px; }
+				.hero-antetitulo { margin-bottom: 12px; }
+				.hero-title { font-size: 6vw; margin-bottom: 12px; }
+				.hero-subtitle { margin-bottom: 0; }
 				.hero-imagen { order: 2; justify-content: center; align-items: center; }
-				.hero-imagen img { max-width: 260px; }
-				.hero-title { font-size: 6vw; }
+				.hero-imagen img { max-width: 330px; }
 				.form-row { grid-template-columns: 1fr; gap: 0; }
 				.ventana-grid { grid-template-columns: 1fr; gap: 32px; }
 				.ventana-texto { order: 1; text-align: center; }
@@ -718,6 +720,7 @@ const webhookURL = "";
 				}
 				.video-trio .video-vertical { flex: 0 0 70%; max-width: 70%; scroll-snap-align: center; }
 				.footer-content { flex-direction: column; text-align: center; }
+				.footer-brand { flex-direction: column; gap: 10px; text-align: center; }
 				.footer-info { text-align: center; }
 			}
 
