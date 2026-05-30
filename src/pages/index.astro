@@ -34,11 +34,6 @@ const webhookURL = "";
 	</head>
 	<body>
 
-		<!-- ===== TOPBAR ===== -->
-		<div class="topbar">
-			<span>👶 Para mamás y papás con hijos de 0 a 6 años</span>
-		</div>
-
 		<!-- ===== 1. HERO + FORMULARIO ===== -->
 		<section class="hero" id="inicio">
 			<div class="cloud cloud-1"></div>
@@ -47,7 +42,7 @@ const webhookURL = "";
 			<div class="cloud cloud-4"></div>
 
 			<div class="container">
-				<div class="hero-grid">
+				<div class="hero-top">
 					<div class="hero-text">
 						<div class="hero-logo">
 							<img src="/logo.png" alt="Bebé Políglota" />
@@ -60,11 +55,16 @@ const webhookURL = "";
 							Entre los 0 y los 6 años el cerebro de tu hijo vive una ventana única que no se repite. Te mostramos cómo aprovecharla con un método respaldado por la ciencia. Déjanos tus datos y un asesor te explica cómo, sin costo.
 						</p>
 					</div>
+					<div class="hero-imagen">
+						<img src="/nina-feliz.png" alt="Niña feliz celebrando" />
+					</div>
+				</div>
 
-					<!-- FORMULARIO HERO -->
-					<div class="hero-form-wrap">
-						<form class="lead-form" id="form-hero" onsubmit="return enviarLead(event, 'form-hero')">
-							<h2 class="form-title">Recibe la información gratis</h2>
+				<!-- FORMULARIO HERO -->
+				<div class="hero-form-wrap">
+					<form class="lead-form" id="form-hero" onsubmit="return enviarLead(event, 'form-hero')">
+						<h2 class="form-title">Recibe la información gratis</h2>
+						<div class="form-row">
 							<div class="form-field">
 								<label for="nombre-hero">Tu nombre</label>
 								<input type="text" id="nombre-hero" name="nombre" placeholder="Escribe tu nombre" required />
@@ -88,10 +88,10 @@ const webhookURL = "";
 									<option value="6 años">6 años</option>
 								</select>
 							</div>
-							<button type="submit" class="btn btn-orange btn-block">QUIERO QUE UN ASESOR ME EXPLIQUE →</button>
-							<p class="form-micro">Es gratis y sin compromiso. Te contactamos hoy mismo.</p>
-						</form>
-					</div>
+						</div>
+						<button type="submit" class="btn btn-orange btn-block">QUIERO QUE UN ASESOR ME EXPLIQUE →</button>
+						<p class="form-micro">Es gratis y sin compromiso. Te contactamos hoy mismo.</p>
+					</form>
 				</div>
 			</div>
 		</section>
@@ -100,6 +100,9 @@ const webhookURL = "";
 		<section class="section-conexion">
 			<div class="container container-narrow">
 				<p class="conexion-frase conexion-pregunta">¿A ti te costó aprender inglés? ¿Sentiste que empezaste demasiado tarde?</p>
+				<div class="conexion-imagen">
+					<img src="/nino-vs-adulto.png" alt="Niño feliz aprendiendo idiomas y adulto con dificultad" />
+				</div>
 				<p class="conexion-frase">No quieres que a tu hijo le pase lo mismo. Quieres que para él los idiomas sean fáciles y naturales, una puerta abierta y no un muro.</p>
 				<p class="conexion-frase">La buena noticia: hoy puedes prepararlo. Y el mejor momento es ahora, mientras su cerebro está en su etapa más receptiva.</p>
 			</div>
@@ -112,18 +115,7 @@ const webhookURL = "";
 			<div class="container">
 				<div class="ventana-grid">
 					<div class="ventana-imagenes">
-						<div class="ventana-img-card">
-							<img src="/beneficio-3.png" alt="Bilingüe temprano" />
-							<span>Bilingüe Temprano</span>
-						</div>
-						<div class="ventana-img-card">
-							<img src="/beneficio-1.png" alt="Bilingüe tardío" />
-							<span>Bilingüe Tardío</span>
-						</div>
-						<div class="ventana-img-card">
-							<img src="/beneficio-6.png" alt="Monolingüe" />
-							<span>Monolingüe</span>
-						</div>
+						<img src="/ventana-oportunidad.png" alt="Etapas del aprendizaje de idiomas: bebé, niño y adulto" />
 					</div>
 					<div class="ventana-texto">
 						<h2 class="seccion-titulo">Los niños menores de 6 años aprenden idiomas hasta <span class="text-purple">7 veces más rápido</span> que un adulto.</h2>
@@ -149,7 +141,7 @@ const webhookURL = "";
 					</div>
 					<div class="metodo-imagen">
 						<div class="metodo-img-circle">
-							<img src="/kit/album-booz.png" alt="Material del Método Bebé Políglota" />
+							<img src="/kit-completo.png" alt="Kit completo del Método Bebé Políglota" />
 						</div>
 					</div>
 				</div>
@@ -334,17 +326,6 @@ const webhookURL = "";
 			.cloud-6 { width: 70px; height: 40px; top: 60%; right: 6%; }
 			.cloud-6::before { width: 45px; height: 45px; top: -18px; left: 8px; }
 
-			/* TOPBAR */
-			.topbar {
-				background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 100%);
-				color: var(--white);
-				text-align: center;
-				padding: 10px 16px;
-				font-weight: 700;
-				font-size: 0.95rem;
-				font-family: var(--font-display);
-			}
-
 			/* HERO */
 			.hero {
 				background: linear-gradient(180deg, var(--sky-medium) 0%, var(--sky-soft) 100%);
@@ -352,13 +333,21 @@ const webhookURL = "";
 				position: relative;
 				overflow: hidden;
 			}
-			.hero-grid {
+			.hero-top {
 				display: grid;
-				grid-template-columns: 1.1fr 0.9fr;
-				gap: 48px;
+				grid-template-columns: 1fr 1fr;
+				gap: 24px;
 				align-items: center;
 				position: relative;
 				z-index: 2;
+				margin-bottom: 40px;
+			}
+			.hero-imagen { display: flex; justify-content: flex-start; align-items: flex-end; }
+			.hero-imagen img {
+				width: 100%;
+				max-width: 540px;
+				height: auto;
+				filter: drop-shadow(0 18px 36px rgba(30, 58, 138, 0.18));
 			}
 			.hero-logo { margin-bottom: 24px; }
 			.hero-logo img { height: 72px; width: auto; }
@@ -390,7 +379,7 @@ const webhookURL = "";
 			}
 
 			/* FORMULARIO */
-			.hero-form-wrap { position: relative; z-index: 2; }
+			.hero-form-wrap { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
 			.lead-form {
 				background: var(--white);
 				border-radius: var(--radius-xl);
@@ -398,6 +387,7 @@ const webhookURL = "";
 				box-shadow: 0 20px 60px rgba(30, 58, 138, 0.18);
 				border: 3px solid var(--white);
 			}
+			.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
 			.form-title {
 				font-family: var(--font-display);
 				font-size: 1.5rem;
@@ -459,6 +449,8 @@ const webhookURL = "";
 				font-weight: 800;
 				color: var(--ink);
 			}
+			.conexion-imagen { margin: 32px 0; }
+			.conexion-imagen img { width: 100%; max-width: 340px; height: auto; }
 
 			/* SECCIÓN COMÚN */
 			.seccion-titulo {
@@ -503,7 +495,8 @@ const webhookURL = "";
 				position: relative;
 				z-index: 2;
 			}
-			.ventana-imagenes { display: flex; flex-direction: column; gap: 20px; }
+			.ventana-imagenes { display: flex; justify-content: center; }
+			.ventana-imagenes img { width: 100%; max-width: 400px; height: auto; }
 			.ventana-img-card {
 				background: var(--white);
 				border-radius: var(--radius-lg);
@@ -528,8 +521,8 @@ const webhookURL = "";
 			}
 			.metodo-grid {
 				display: grid;
-				grid-template-columns: 1.15fr 0.85fr;
-				gap: 56px;
+				grid-template-columns: 1fr 1fr;
+				gap: 48px;
 				align-items: center;
 			}
 			.metodo-puntos { list-style: none; margin-top: 8px; }
@@ -548,7 +541,7 @@ const webhookURL = "";
 			.metodo-imagen { display: flex; justify-content: center; }
 			.metodo-img-circle {
 				width: 100%;
-				max-width: 340px;
+				max-width: 440px;
 				aspect-ratio: 1;
 				background: radial-gradient(circle, #DBEAFE 30%, #93C5FD 70%, #60A5FA 100%);
 				border-radius: 50%;
@@ -557,7 +550,7 @@ const webhookURL = "";
 				justify-content: center;
 				box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
 			}
-			.metodo-img-circle img { width: 88%; height: 88%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
+			.metodo-img-circle img { width: 90%; height: 90%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
 
 			/* SECCIÓN VIDEO */
 			.section-video {
@@ -700,9 +693,12 @@ const webhookURL = "";
 			/* ===== RESPONSIVE ===== */
 			@media (max-width: 900px) {
 				.hero { padding: 32px 0 48px; }
-				.hero-grid { grid-template-columns: 1fr; gap: 32px; }
-				.hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
+				.hero-top { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+				.hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; order: 1; }
+				.hero-imagen { order: 2; }
+				.hero-imagen img { max-width: 260px; }
 				.hero-title { font-size: 6vw; }
+				.form-row { grid-template-columns: 1fr; gap: 0; }
 				.ventana-grid { grid-template-columns: 1fr; gap: 32px; }
 				.ventana-texto { order: 1; text-align: center; }
 				.ventana-imagenes { order: 2; }
