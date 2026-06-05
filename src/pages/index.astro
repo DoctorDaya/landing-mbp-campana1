@@ -732,7 +732,8 @@ const webhookURL = "https://crm.bebepoliglota.com.co/api/landing/info";
 			}
 		</style>
 
-		<script define:vars={{ webhookURL }}>
+		<script is:inline>
+			const webhookURL = "https://crm.bebepoliglota.com.co/api/landing/info";
 			function enviarLead(event, formId) {
 				event.preventDefault();
 				const form = document.getElementById(formId);
@@ -766,6 +767,11 @@ const webhookURL = "https://crm.bebepoliglota.com.co/api/landing/info";
 			function cerrarModal() {
 				document.getElementById('modal-exito').classList.remove('activo');
 			}
+
+			// Exponer las funciones al ámbito global para que los onsubmit/onclick del HTML las encuentren
+			// (Astro envuelve este script en una función al compilar, así que hay que hacerlas globales)
+			window.enviarLead = enviarLead;
+			window.cerrarModal = cerrarModal;
 		</script>
 	</body>
 </html>
